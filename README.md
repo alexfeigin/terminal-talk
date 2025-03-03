@@ -1,333 +1,167 @@
-# terminal-talk
+# Terminal talk
 
-| Section                        | Time  |
-|--------------------------------|-------|
-| Foundations (Terminal & Shell) | 5 min |
-| Motivation (Why CLI?)          | 2 min |
-| CLI Basics (Zero to Hero)      | 5 min |
-| Vim (Quick Intro)              | 3 min |
-| Productivity Tools             | 5 min |
-| Bash Scripting (Flyover)       | 5 min |
-| Live Coding (Automate a Task)  | 5 min |
+| section                                               | time | start time |
+|-------------------------------------------------------|------|------------|
+| CLI productivity and me (Alex)                        | 2    | 0          |
+| CLI productivity and you (the why, the how, the what) | 2    | 2          |
+| Modern terminal emulators (iTerm2)                    | 2    | 4          |
+| Package manager (brew)                                | 2    | 6          |
+| The shell (my case for investing in bash)             | 2    | 8          |
+| Productivity tools (tmux, fzf, bat, fd, btop)         | 5    | 10         |
+| Customizing your experience (dotfiles)                | 2    | 15         |
+| All developers want the same thing (git aliases)      | 3    | 17         |
+| Scripting a case for bash                             | 5    | 20         |
+| Live Coding (Automate a Task)                         | 5    | 25         |
+| Thanks                                                | 0    | 30         |
 
-## **Foundations (Terminal & Shell)**
+## CLI productivity and me (Alex)
+I've been deploying software to linux servers since i was 18...
+I used to work as a POC engineer and change code live on remote servers. so I had to become good at this.
 
-This is a huge simplification and crunch down of actual history, and I'm making it sound like it's a linear progression, which it's not.  
-But in the beginning, computers had no interface. Anything the computer did was done by an operator. It had switches, toggles, and lights.
+## CLI productivity and you (the why, the how, the what)
+It's a power tool that is strongly integrated with the operating system
+For Mac and linux users, it's already there.  
+For windows users, there are options like WSL, or working in a VM.  
 
-Some time after that, we had computers that read punch cards and were connected to printers.  
-Some time after that, we got the old-timey monochrome screens with barely any pixels and a keyboard. That was connected to a sometimes very big and out-of-the-way computer system in a different room.
+If you are starting now, you have the privilege of living in a world with co-pilot and youtube tech influencers having a cli renaissance.
 
-So that gave us the word **terminal**. Other words like **console** have a similar source.  
-The terminal was a physical device that was connected to the computer. It was replaced when we got networking, turning it into a **remote terminal**, and we got the **SSH protocol**.
+## Modern terminal emulators (iTerm2)
+In Mac, you get the terminal.app, and in other systems you'll get some default.
+there are modern terminal emulators that have many customization options. They might even be graphics card accelerated.  
+If you are on Mac, the no-brainer option is iTerm2.
 
-When we got PCs in the late '80s, it was replaced by a **terminal emulator**.  
-But the point was the same: it is a **text-based interface to the computer**.
+## Package manager (brew)
+You get many tools out of the box, there are lean distros of linux where some of the tools might not be available.
+But all of them have a package manager, and you can get the tools you need, and keep them updated with security patches.
 
-### **So what is a shell?**
-
-You can know a shell by its function. It's an executable. When you run it in interactive mode, it's a **command-line interpreter**—a **REPL (Read-Eval-Print Loop)**.  
-Its purpose is to expose the services of an operating system. A shell comes with built-in commands that let you interact with **files, processes, and the system itself**.
-
-Because the early people interacting with computer systems were more or less all expected to be able to solve their own problems by programming their own computers, it makes sense that the shell comes with programming ability.  
-It has built-in programming capabilities like **variables, loops, conditionals, functions, etc.**
-
-But what makes it the **Swiss Army knife** that it is, is the amount of **open-source software** available to support it.  
-In Java, you'd add a **Maven dependency**.  
-In the shell, you'd use a **package manager** like **brew** to install a CLI tool like **jq** or **fzf** (*he said, foreshadowing the rest of this talk*).
-
-## **Motivation (Why CLI?)**
-
-Why am I bothering you with this talk today?  
-Let's break this sentence down.
-
-**Why today?** Well, I'm here and you're here. So that's a good start.  
-**Why me?** and **Why this talk** I've been hovering around software development for like 30 years.
-
-When I first heard about the concept of a **power user**, I knew it was for me.  
-I knew my way around an **operating system**, around **hardware**, and many different **programming languages** by the time I got to my programming course in the army.
-
-Nothing they taught in that course was new to me.  
-But during a simple interview with one of the instructors, they were on a keyboard in front of a computer, just scribbling away, taking notes.
-
-Then, in like **10 seconds**, they moved around in **four different windows**, executing this and that shortcut and command... and I was like...
-
-**What was that?**  
-*"What was what?"*  
-*"That thing you just did."*  
-*"Oh, that? Yeah, when you spend your entire day on a computer, you learn to become a power user."*
-
-I was entranced. I wanted to know all the shortcuts. I never wanted to do a **long cut** ever again.
-
-So when I got to use **Linux-like systems** and was forced to develop on **remote systems** using **Bash and Vim**, I was a power user.  
-I had to make this system my home.
-
-A lot of times, we find ourselves in a situation where the **right tool for the job** is already a **CLI tool**.  
-Even today, even still.
-
-## **CLI Basics (Zero to Hero)**
-
-Let's start with the basics.
-
-Select a **good terminal emulator**. There are many options, some even use the graphics card to render blazingly fast.  
-But for **Mac**, you can't go wrong with **iTerm2**.
-
-You've opened your terminal. You get your **default shell** in your **home directory**.
-- If you're on **Mac**, your default shell is **zsh**.
-- If you're on **Linux** or **WSL**, it's probably **bash**.
-
-I recommend **switching to Bash**. It's more common.
-- If you **learn Bash**, you can use it when you **SSH into a remote system** (e.g., `kubectl exec` into a pod).
-- If you **learn Bash scripting**, you can **reuse your scripts everywhere** there's Bash—which is **everywhere**.
-- Not the same with **zsh**.
-
-So if you **invest**, invest in **Bash**.
-
-### **You are in. You are in Bash.**
-
-| **Command**     | **Description**                         |
-|-----------------|-----------------------------------------|
-| `cd`           | Change directory                        |
-| `pwd`          | Print working directory                 |
-| `ls`           | List files in the current directory     |
-| `find`         | Find files                              |
-| `cat`          | Print file contents                     |
-| `less`         | Page through a file                     |
-| `head`         | Print first lines of a file             |
-| `tail`         | Print last lines of a file              |
-| `grep`         | Search inside files                     |
-| `type`         | Show what a command is                  |
-| `rm`           | Remove files or directories             |
-| `cp`           | Copy files or directories               |
-| `touch`        | Create an empty file                    |
-| `mkdir`        | Create a new directory                  |
-| `chmod`        | Change file permissions                 |
-| `echo`         | Print text to the terminal              |
-| `tar`          | Archive files                           |
-| `su`           | Switch user                             |
-| `sudo`         | Run a command as superuser              |
-| `sed`          | Stream editor for modifying text        |
-| `awk`          | Text processing tool                    |
-| `curl`         | Download files from the web             |
-| `wget`         | Download files from the web             |
-| `ssh-keygen`   | Generate SSH keys                       |
-| `vim`          | Text editor                             |
-
-
-## **Vim (Quick Intro)**
-
-`:q<enter>`  
-That's how you **quit Vim**.
-
-No, but seriously—Vim is a **text editor**.  
-It's **modal**. It has **modes**, **commands**, and **keybindings**.
-
-### **Modes of Vim:**
-
-#### **Normal Mode**
-- You can **navigate** the file.
-- You need to learn **Vim motions**:
-  - `hjkl` → Move left, down, up, right
-  - `w` → Jump to next word
-  - `b` → Jump to previous word
-  - `e` → Jump to end of word
-  - `gg` → Go to start of file
-  - `G` → Go to end of file
-
-#### **Insert Mode**
-- You can **insert text**.
-- To **enter insert mode**, press **`i`**.
-- To **exit insert mode**, press **`Esc`**.
-
-#### **Visual Mode**
-- You can **select text**.
-- To **enter visual mode**, press **`v`**.
-- To **exit visual mode**, press **`Esc`**.
-- To **copy text**, press **`y`**.
-- To **cut text**, press **`d`**.
-- To **paste text**, press **`p`**.
-
-#### **Command Mode**
-- You can **run commands**.
-- To **enter command mode**, press **`:`**.
-- To **exit command mode**, press **`Esc`**.
-- To **save a file**, press **`:w`**.
-- To **save and quit**, press **`:wq`** or **`:x`**.
-- To **quit without saving**, press **`:q!`**.
-- To **search**, press **`/`** and type your search term as a **regex**.
-- To **replace**, type **`:%s/search as regex/replace exact/g`**.
-
-### **Why Use Vim?**
-Vim is useful **because it's always there**.  
-For me, I've spent **a lot of time** in Vim—I'm **super comfortable** with it.
-
-That said, I use **IntelliJ** for most of my text editing, **especially when I'm not on a remote system**.  
-And it has **GitHub Copilot**.
-
-So yeah… **I'm not holier than thou.** 
-
-## **Productivity Tools**
-
-Okay, so you've got a **terminal**, and you know the **basics**.  
-But is it **useful**? Is it **productive**? Are you **done**?
-
-Am I?
-
-**Strap in, we're going for a ride.** 
-
-### **Essential CLI Tools:**
-
-| **Tool**           | **Description**                               |
-|--------------------|-----------------------------------------------|
-| **brew**           | Package manager                               |
-| **tldr**           | Like a `man` page, but **summarized**          |
-| **jq**             | JSON processor                                |
-| **fzf**            | Fuzzy finder                                  |
-| **bat**            | `cat`, but **better** (syntax highlighting & paging) |
-| **ripgrep**        | `grep` **on steroids**                        |
-| **fd**             | `find` **on steroids**                        |
-| **exa**            | `ls` **on steroids**                          |
-| **git aliases**    | `git` **on steroids**                         |
-| **tmux**           | Terminal multiplexer                          |
-| **kubectl**        | Kubernetes CLI                                |
-| **aws**            | AWS CLI                                       |
-| **pass**           | Password manager                              |
-| **thefuck**        | Correct your previous command                 |
-| **watch**          | Run a command **every 2 seconds**             |
-| **bash-completion**| Tab completion for Bash                       |
-| **lesspipe**       | View **compressed files**                     |
-| **btop**           | `top` **on steroids**                         |
-| **cloc**           | Count lines of code                           |
-
-## Bash Scripting (Flyover)
-you might have heard about scripting in bash.
-it looks like this
 ```bash
-#!/usr/bin/env bash
-# this line above is called a shebang. it tells the system to use bash to run this script.
-# always the first line of the file.
-# this is obviously a comment. comments are lines that start with a #
+brew install jq fzf bat fd btop tmux git tlrc bash-completion # install cli tools
+brew --cask install iterm2 # install Mac packages (/Applications)
+brew --cask install intellij-idea
+brew tap homebrew/bundle # backup and restore your installed packages
+brew bundle dump # creates a Brewfile (a backup list of installed packages)
+brew bundle install # looks for a Brewfile in current directory (restores packages)
+brew upgrade # upgrade all packages
+```
+If you have a new employee, a quick way to set them up is to have a reference Brewfile.  
+You can create a reference Brewfile by backing up another employee's Brewfile and cleaning up any packages that are not needed.
 
-variable="world"
-# this is how to set a variable. no spaces around the = sign.
-# no spaces around the variable name. no spaces around the value.
-echo "hello ${variable}"
-# this is how to print a variable. the $ sign is used to reference a variable.
-# no spaces around the $ sign. no spaces around the variable name.
+## The shell (my case for investing in bash)
+you'll get a default shell, in some lean distors it will be `sh` on Mac it's `zsh`
+I recommend investing in bash, from the more capable shells, it's the most common, and you'll find it almost everywhere.
+becoming a wiz in zsh and then finding yourself on bash in a pod exec -it, won't be fun.
+but bash is just compatible with `sh` so you won't be lost in a `sh` shell.
 
+## Customizing your experience (dotfiles)
+.bashrc + .bash_profile (aliases, functions, environment variables) [Documentation with an example of .bash_profile](profile.d/README.md)
 
-# this is how to run a command and store the output in a variable
-output=$(ls)
-echo "${output}"
+.gitconfig (git aliases, git settings) [example gitconfig](https://github.com/alexfeigin/devel/blob/feature/mac/gitconfig)
 
-# already very useful. but we can do more.
-# we can use conditionals
-if [ -f "file.txt" ]; then
-  echo "file exists"
-else
-  echo "file does not exist"
-fi
+.tmux.conf [example .tmux.conf](https://www.google.com/search?q=.tmux.conf)
 
-# we can use loops
-for file in $(ls); do
-  echo "${file}"
-done
+## All developers want the same thing (git aliases)
 
-# we can use functions
-function say_hello() {
-  echo "hello"
-}
+Configured from the above .gitconfig,
 
-# to call a function, use it like it was a built in command, or an executable on the PATH
-say_hello
+Here are some I use everyday
+- git openurl
+  - open the git remote with the default browser
+  - tested with github and bitbucket (might work for others)
+  - works if repo was cloned with ssh `git@` or `https://` remotes.
+- git track
+  - infer the name of `localbranch` from HEAD
+  - alias for `git branch --set-upstream-to=origin/$localbranch $localbranch;`
+  - if you created a local branch and pushed it, this is useful to set the upstream
+- git rh
+  - this will ask before executing, because it's destructive (deletes all local changes)
+  - it will display `Press Enter to continue [Ctrl-C to cancel]` and give you a chance to cancel.
+  - fetches remote `origin` and hard resets the local branch to `origin/master`
+- git whoami
+  - display the current Author string. 
+  - alias for `echo "Author: $(git config --get user.name) <$(git config --get user.email)>"`
+- git co
+  - git checkout
+- git ci
+  - git commit
+- git stat
+  - git `status -s -b` (short status summery with branch name)
+- git cleanf
+  - alias for `git clean -xdf`
+  - removes all untracked files and directories (good for having a clean env if builds fail in a funny way)
 
-# we can use arguments
-# we can also rewrite existing functions. and hide existing commands with functions.
-function say_hello() {
-  echo  "hello $1"
-}
+Instructions on how to get my aliases for gitconfig [are in this README.md](profile.d/README.md) 
 
-# to call a function with an argument, pass the argument after the function name
-say_hello "world"
+## Productivity tools (tmux, fzf, bat, fd, btop)
+* tldr
+  * Installed through the brew package `brew install tlrc`
+  * Gives a quick help for a command
+  * Human-readable short with examples
+  * A better man page
+* tmux
+  * Is a terminal multiplexer, keep your work if your terminal emulator gets closed.
+  * You can have many windows open and move through
+  * You can have long-running tasks and check on them later
+* fzf
+  * Fuzzy finder, you can search for files, or lines in files
+  * Can be used to fuzzy search on files or stdout 
+    * `cat a.txt | fzf` find a line in a file interactively using fuzzy search
+    * `ps -ef | fzf --height=40% --layout=reverse --border | awk '{print $2}'` find a process id interactively by fuzzy searching for the executable name
+  * If sourced with `source <(fzf --bash)` it will add hotkeys and special completion
+    * Ctrl + r replaces the default reverse search for commands
+    * Ctrl + t lets you complete a file path from fuzzy searching current directory
+    * `**` uses bash completion to understand the context and give nice searches
+      * Iin cd `**` will search for directories
+      * In kill -9 `**` will search for processes
+* bat
+  * it's like cat but with syntax highlighting
+  * it's more like less, but with syntax highlighting
+* fd
+  * it's an alternative to `find`
+  * it is git aware, it will ignore .git dir, and respect .gitignore in the search result.
+  * it uses regex `fd '\.sh$' --type f` find all files ending in `.sh`
 
-# so if we wanted a nice logging function that supported formatting so we could
-# feel like we are in a real programming language
-log() {
-    local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
-    local format="[$timestamp]: $1\n"
-    shift
-    printf "$format" $@
-}
+there are so many, and do you own research, if there's something you do every day as an engineer, there's probably a cli tool for it.
 
-log "hello %s" "world"
+## Scripting a case for bash
+bash has many concepts of scripting that become useful
+because of the shell's integration with the operating system and the many tools that are available.
 
-# there are 2 output streams, stdout and stderr.
-# we can redirect to a file or to each other.
-# stdout is 1, stderr is 2. > redirects stdout, 2> redirects stderr
-# 2>&1 redirects stderr to stdout.
-cat no_such_file.txt 2> /dev/null
+here's a bad school question example, it's not interesting in itself, but as an example it will show my point.
+make a program that will read through `a.txt` count occurrences of the all words, and print the top 3 most common words.
 
-# a builtin command an executable or a function can return a value. called the exit code.
-# 0 means success. anything else means failure.
-# we can try to read a file and if it doesn't exist the command fails
-# so we can print a message
-cat no_such_file.txt 2>/dev/null || log "file not found"
+nice programming prompt, let's solve it with the god-mode programming language, java with spring boot.
 
-# if a command wants a file as an input
-# we can give it a temporary file as the output of another command
-cat <(ls)
+you can imagine it's going to be a multi file project. 
 
-# readlink -f gives the real file for a file or a symbolic link for a file
-# so let's see what this prints:
-readlink -f <(ls -a)
-#/dev/fd/63
-# this is a file descriptor. it's a file that represents the output of the ls -a command.
-# it's a way to pass the output of a command as a file.
+ok you say, clearly it's a job for a scripting language. let's go for python:
 
-# we can use the output of a command as an argument to another command
-echo $(ls -l)
-# you can see that $() changes the output of the command, it removes the newlines.
-
-# bash scripts are interpreted line by line.
-# so functions from the beginning of the file are in the 'sourced'
-# in the environment and can be run. but you can't call a function before it's defined.
-this_will_fail
-function this_will_fail() {
-  echo "this will fail"
-}
-# output: -bash: this_will_fail: command not found
-
-# you can store functions in a file, and source them
-source my_functions.sh
-# sourcing a file is like running the file in the current shell.
-# so all functions and variables are available in the current shell.
-
-# you can also run a script as a command. but you need to make it executable first.
-chmod +x my_script.sh
-./my_script.sh
-# this will run the script in a new shell.
-# so all functions and variables are available in the new shell.
-# but not in the current shell.
+```python
+form collections import Counter
+import re
+print('\n'.join([f'{count} {word}' for word, count in Counter(re.findall(r'\w+', open('a.txt').read())).most_common(3)]))
 ```
 
-## **Live Coding (Automate a Task)**
+ok but you'd have to install python. it's not crazy, it's very flexible you could do anything in python.
+but you already have bash, and it looks like this:
 
-Here's something I find myself doing from time to time.  
-I `curl` into some endpoint that I don't know and get a JSON response.  
-Sometimes it's just a minimal and readable JSON with a single field:
-
-```json
-{ "auth_key": "skmQ5Mu30jav3rtT9kUIz1nzY6wWQDo1YBEkOVY3CXW1kSvYsQu5KdTa88t0CLxTTDrBzHaNeZ0x8hQYTDrMRUnKcgPqtuRVSG4zSzB" }
+```bash
+cat a.txt | grep -oE '\w+' | sort | uniq -c | sort -nr | head -3
 ```
 
-Life is good. You move on.
+## Live Coding (Automate a Task)
+You have a remote api you don't have good documentation for, the json response is nested 5 objects deep and has multiple arrays.  
+How do you deal with this?
 
-Sometimes, though, it's multiple arrays of objects, nested 5-6 levels deep. You don't have the schema, and you just want a single field from that.  
-Needle in a haystack, right?
+Let's make a new tool with bash, that you'd be able to use daily.
 
-You can run it through `jq` to pretty-print.  
-You can pipe it to `bat -l json` to get a pageable view with syntax highlighting.  
-You could `grep` it, but that won't help you learn the structure.  
-You could open it in a JSON viewer, but that's a lot of clicks. And this talk is about the terminal.
+You can see the result of the live coding in [json_helpers](profile.d/json_helpers.sh) script in this repo 
 
-Let's see if we can live-code a solution to this problem in a way that we can reuse it later.  
+The test url we used during the talk is
+```bash
+curl -s 'https://dummyjson.com/users?limit=20' | jq
+```
+special thanks to [dummyjson.com](https://dummyjson.com/) for hosting this cool api.
+
+## Thanks
+
+more fun documentation in this [profile.d/README.md](profile.d/README.md) 
