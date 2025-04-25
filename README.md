@@ -35,7 +35,7 @@ You get many tools out of the box, there are lean distros of linux where some of
 But all of them have a package manager, and you can get the tools you need, and keep them updated with security patches.
 
 ```bash
-brew install jq fzf bat fd btop tmux git tlrc bash-completion # install cli tools
+brew install coreutils jq fzf flock bat fd btop tmux git tlrc  bash-completion # install cli tools
 brew --cask install iterm2 # install Mac packages (/Applications)
 brew --cask install intellij-idea
 brew tap homebrew/bundle # backup and restore your installed packages

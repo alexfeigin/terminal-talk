@@ -2,6 +2,18 @@
 
 These are example scripts that can be copied to `/usr/local/etc/profile.d` and sourced via the `~/.bash_profile`.
 
+
+
+quick setup from the command line at terminal-talk clone:
+```bash
+cat <<EOF > ~/.bashrc
+if [ -f ~/.bash_profile ]; then
+. ~/.bash_profile
+fi
+
+EOF
+```
+
 Example `~/.bash_profile`:
 ```bash
 #!/usr/bin/env bash
@@ -31,7 +43,7 @@ alias edit='idea -e'
 # pretty prompt
 export PS1='[\A][\u@\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:\w]\$ '
 
- # lesspipe lets you see content of some supported files/directories (like if you less on a .tar.gz file, you will see the entry list)
+# lesspipe lets you see content of some supported files/directories like if you less on a .tar.gz file, you will see the entry list
 export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 
 # use jdk util to make sure java21 is exported to JAVA_HOME
@@ -55,6 +67,10 @@ but I personally use 1password cli, which is a licensed-paid product.
 there are other options, a good one that has mac support and cli support is `bitwarden`. 
 as of the writing of this, it's still free for personal use.  
 `pass` is a GPL tool so it's open source and free for personal use.
+
+## idea.sh
+
+provides an `idea` function that is a workaround for some bugs with using the original `idea` executable from the command line.
 
 ## git aliases
 

@@ -7,12 +7,24 @@ function calcpath() {
       flock -x -w 10 200 || exit 1
       [[ -f "${path_cache}" ]] && file_time=$(date -r "${path_cache}" +%s) || file_time=0
       if (( file_time < (current_time - ( 60 * 60 * 24 ))  )); then
-         build_path='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+         if [ -f /usr/local/bin/brew ]; then
+            build_path="$(/usr/local/bin/brew shellenv | grep 'export PATH' | awk -F'[="]' '{print $3}')"
+         elif [ -f /opt/homebrew/bin/brew ]; then
+            build_path="$(/opt/homebrew/bin/brew shellenv | grep 'export PATH' | awk -F'[="]' '{print $3}')"
+         else
+            build_path='/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+         fi
          build_path=/usr/local/share/python:${build_path}
          build_path="${KREW_ROOT:-$HOME/.krew}/bin:${build_path}"
          build_path=${build_path}:$HOME/sources/do-scripts/ci_scripts
          build_path=${build_path}:$HOME/.rd/bin/
-         for i in $(find /usr/local/opt -maxdepth 3 -type d -follow -name gnubin); do p=$i:$p; done
+
+         if [ -f /opt/homebrew/bin ]; then
+             for i in $(find /opt/homebrew/bin -maxdepth 3 -type d -follow -name gnubin); do p=$i:$p; done
+         fi
+         if [ -f /usr/local/bin ]; then
+             for i in $(find /usr/local/bin -maxdepth 3 -type d -follow -name gnubin); do p=$i:$p; done
+         fi
          build_path=${p}${build_path}
          echo ${build_path} > "${path_cache}"
        fi
