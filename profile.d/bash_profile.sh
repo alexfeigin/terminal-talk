@@ -3,7 +3,7 @@
 export LC_ALL=en_US.UTF-8
 
 # enable bash_completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
 
 # source all scripts in /usr/local/etc/profile.d
 for sh in /usr/local/etc/profile.d/*.sh; do
