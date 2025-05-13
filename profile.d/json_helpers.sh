@@ -48,7 +48,7 @@ jqselectpath() {
   tmp=$(mktemp stdin_XXXXXXXX.json)
   cat >$tmp
   jqpath=$(cat $tmp | jqpaths | fzf --height=40% --layout=reverse --border)
-  echo i"jq -r '${jqpath}'"
+  echo "jq -r '${jqpath}'"
   cat $tmp | jq -r $jqpath
   [[ "$1" != "-keep" ]] && rm $tmp || printf '\n%s\n' "keeping stdin in temp file: ${tmp}"
 }

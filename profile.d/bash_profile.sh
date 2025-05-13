@@ -2,12 +2,11 @@
 
 export LC_ALL=en_US.UTF-8
 
-# enable bash_completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+source <(/opt/homebrew/bin/brew shellenv)
 
 # source all scripts in /usr/local/etc/profile.d
-for sh in /usr/local/etc/profile.d/*.sh; do
-  [ -r "$sh" ] && . "$sh"
+for sh in "${HOMEBREW_PREFIX}/etc/profile.d"/*.sh; do
+  [ -r "${sh}" ] && source "${sh}"
 done
 unset sh
 
@@ -26,7 +25,8 @@ alias edit='idea -e'
 export PS1='[\A][\u@\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:\w]\$ '
 
 # lesspipe lets you see content of some supported files/directories like if you less on a .tar.gz file, you will see the entry list
-export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+export LESSOPEN="|$HOMEBREW_PREFIX/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+export LESS='--mouse'
 
 # use jdk util to make sure java21 is exported to JAVA_HOME
 jdk 21 &> /dev/null

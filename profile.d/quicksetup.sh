@@ -11,10 +11,10 @@ if ! command -v brew &> /dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 curl -fsSL "https://raw.githubusercontent.com/alexfeigin/terminal-talk/refs/heads/master/Brewfile" -o Brewfile
-brew tap homebrew/bundle
-brew bundle Brewfile
+brew bundle --file=Brewfile
 
-sudo mkdir -p /usr/local/etc/profile.d
+mkdir -p /opt/homebrew/etc/profile.d
 for file in awshelper.sh calcpath.sh curlutils.sh fzf.sh generate_secure_password.sh idea.sh jdk.sh json_helpers.sh kubectlcomplete.sh passcopy.sh sources.sh unzip.sh; do
-  sudo curl -fsSL "https://raw.githubusercontent.com/alexfeigin/terminal-talk/refs/heads/master/profile.d/${file}" -o "${file}"
+  curl -fsSL "https://raw.githubusercontent.com/alexfeigin/terminal-talk/refs/heads/master/profile.d/${file}" -o "/opt/homebrew/etc/profile.d/${file}"
 done
+
